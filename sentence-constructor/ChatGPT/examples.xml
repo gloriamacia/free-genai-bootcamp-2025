@@ -1,0 +1,105 @@
+<examples>
+    <example>
+        <user_input>
+            Bears are at the door, did you leave the garbage out?
+        </user_input>
+        <score>4</score>
+        <score_reasons>
+            <reason>BAD: in the vocabulary table, the Catalan translations are missing; the cells are just blank</reason>
+            <reason>BAD: the beginner sentence is unnecessary; it should just start by showing the vocabulary table</reason>
+            <reason>BAD: In the clues, we should not provide verb conjugations upfront; the student needs to figure that out.</reason>
+            <reason>BAD: The sentence structure explanation gives too much information; we want a conceptual structure like this: [Location] [Subject] [Verb], [Object] [Verb-past]?</reason>
+        </score_reasons>
+        <assistant_output>
+            <text>Let's break down the sentence into smaller parts. Here's a vocabulary table to get you started:</text>
+            <vocabulary>
+                <entry>
+                    <catalan>ós</catalan>
+                    <english>bear</english>
+                    <type>Noun</type>
+                </entry>
+                <entry>
+                    <catalan>porta</catalan>
+                    <english>door</english>
+                    <type>Noun</type>
+                </entry>
+                <entry>
+                    <catalan>escombraries</catalan>
+                    <english>garbage</english>
+                    <type>Noun</type>
+                </entry>
+                <entry>
+                    <catalan>estar</catalan>
+                    <english>to be (location)</english>
+                    <type>Verb</type>
+                </entry>
+                <entry>
+                    <catalan>deixar</catalan>
+                    <english>to leave</english>
+                    <type>Verb</type>
+                </entry>
+            </vocabulary>
+            <sentence_structure>
+                <clause>[Subject] [Verb] a [Location]</clause>
+                <clause>[Object] [Verb-past] [Question marker]?</clause>
+            </sentence_structure>
+            <prompt>Your turn! Try filling in the blanks using the vocabulary and structure provided.</prompt>
+        </assistant_output>
+    </example>
+
+    <example>
+        <user_input>
+            Bears are at the door, did you leave the garbage out?
+        </user_input>
+        <score>10</score>
+        <score_reasons>
+            <reason>GOOD: Doesn't provide unnecessary explanations at the start and immediately shows vocabulary</reason>
+            <reason>GOOD: Uses a conceptual sentence structure instead of over-explaining</reason>
+            <reason>GOOD: Clues don't give away verb conjugations or tense</reason>
+        </score_reasons>
+        <assistant_output>
+            <cheatsheet>
+                <entry>
+                    <word>bear</word>
+                    <catalan>ós</catalan>
+                    <type>Noun</type>
+                </entry>
+                <entry>
+                    <word>door</word>
+                    <catalan>porta</catalan>
+                    <type>Noun</type>
+                </entry>
+                <entry>
+                    <word>garbage</word>
+                    <catalan>escombraries</catalan>
+                    <type>Noun</type>
+                </entry>
+                <entry>
+                    <word>to be (location)</word>
+                    <catalan>estar</catalan>
+                    <type>Intransitive Verb</type>
+                </entry>
+                <entry>
+                    <word>to leave</word>
+                    <catalan>deixar</catalan>
+                    <type>Transitive Verb</type>
+                </entry>
+            </cheatsheet>
+            <sentence_structure>
+                <pattern>[Location] [Subject] [Verb], [Object] [Verb-past]?</pattern>
+            </sentence_structure>
+            <considerations>
+                <point>This is a compound sentence with two parts connected by a comma</point>
+                <point>The first part states a location where something exists</point>
+                <point>The second part asks about a past action</point>
+            </considerations>
+            <next_steps>
+                <step>Attempt an answer</step>
+                <step>Ask for clues about location markers</step>
+                <step>Ask for clues about how to connect two sentences</step>
+                <step>Ask for clues about question formation</step>
+                <step>Ask for clues about verb conjugation</step>
+            </next_steps>
+        </assistant_output>
+    </example>
+</examples>
