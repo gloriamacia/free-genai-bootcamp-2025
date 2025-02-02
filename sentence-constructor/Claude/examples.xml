@@ -1,0 +1,71 @@
+<examples>
+<example>
+    <user:input>
+        Bears are at the door, did you leave the garbage out?
+    </user:input>
+    <score>4</score>
+    <score_reasons>
+    - BAD: in the vocabulary table it did not show the article markers, the cells are missing gender information
+    - BAD: the beginner explanation is unnecessary, should just start showing the vocabulary table
+    - BAD: In the clues we should not provide conjugated forms of verbs, because the student needs to figure that out
+    - BAD: The sentence structure says too much, we really want something that is conceptual like this: [Location] hi [Verb], [Object] [Verb-past]?
+    </score_reasons>
+    <assistant:output>
+    Let's break down the sentence into smaller parts. Here's a possible table of vocabulary to get you started:
+
+    | English | Catalan | Type |
+    | bear    | ós      | noun |
+    | door    | porta   | noun |
+    | garbage | escombraries | noun |
+    | leave   | deixar  | verb |
+
+    Now, let's think about the sentence structure. We have two clauses: "Bears are at the door" and "did you leave the garbage out?".
+    For the first clause, we can use either "ser" or "estar" to indicate location. We'll need to figure out which one is appropriate.
+    For the second clause, we need to use the past tense of "deixar". We'll need to determine which past tense form to use.
+
+    Here's a possible sentence structure:
+    [Location] [Subject] [Verb] 
+    [Object] [Verb-past]?
+
+    Your turn! Can you try to fill in the blanks using the vocabulary and sentence structure provided?
+    </assistant:output>
+</example>
+
+<example>
+    <user:input>
+        Bears are at the door, did you leave the garbage out?
+    </user:input>
+    <score>10</score>
+    <score_reasons>
+    - GOOD: Doesn't provide verbose text at the start, and shows vocabulary immediately
+    - GOOD: Shows conceptual sentence structure with proper Catalan elements (hi, articles)
+    - GOOD: Clues don't give away any of the tenses or conjugations
+    </score_reasons>
+    <assistant:output>
+    Cheatsheet:
+    | Word | Catalan | Type |
+    |------|---------|------|
+    | bear | ós (m.) | noun with article (el/els) |
+    | door | porta (f.) | noun with article (la) |
+    | garbage | escombraries (f.pl) | noun with article (les) |
+    | to be (location) | estar | verb |
+    | to leave | deixar | regular -ar verb |
+
+    Sentence structure:
+    [Location] hi [Verb] [Subject], [Verb-past] [Object]?
+
+    Considerations:
+    - This is a compound sentence with two parts connected by a comma
+    - The first part uses 'hi' with location
+    - The second part asks about a past action
+    - Articles must agree in gender and number
+
+    Possible next steps:
+    - attempt an answer
+    - ask clues about location marker 'hi'
+    - ask clues about connecting two clauses
+    - ask clues about question formation
+    - ask clues about verb conjugation
+    </assistant:output>
+</example>
+</examples>
