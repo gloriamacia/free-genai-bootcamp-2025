@@ -1,0 +1,142 @@
+[
+  {
+    "catalan": "pagar",
+    "english": "to pay",
+    "parts": [
+      { "catalan": "pagar" }
+    ]
+  },
+  {
+    "catalan": "anar",
+    "english": "to go",
+    "parts": [
+      { "catalan": "anar" }
+    ]
+  },
+  {
+    "catalan": "fer exercici",
+    "english": "to exercise",
+    "parts": [
+      { "catalan": "fer exercici" }
+    ]
+  },
+  {
+    "catalan": "despertar-se",
+    "english": "to wake up",
+    "parts": [
+      { "catalan": "despertar-se" }
+    ]
+  },
+  {
+    "catalan": "comprar",
+    "english": "to shop",
+    "parts": [
+      { "catalan": "comprar" }
+    ]
+  },
+  {
+    "catalan": "tornar",
+    "english": "to return",
+    "parts": [
+      { "catalan": "tornar" }
+    ]
+  },
+  {
+    "catalan": "escriure",
+    "english": "to write",
+    "parts": [
+      { "catalan": "escriure" }
+    ]
+  },
+  {
+    "catalan": "fer turisme",
+    "english": "to sightsee",
+    "parts": [
+      { "catalan": "fer turisme" }
+    ]
+  },
+  {
+    "catalan": "escoltar",
+    "english": "to listen",
+    "parts": [
+      { "catalan": "escoltar" }
+    ]
+  },
+  {
+    "catalan": "venir",
+    "english": "to come",
+    "parts": [
+      { "catalan": "venir" }
+    ]
+  },
+  {
+    "catalan": "fer",
+    "english": "to do",
+    "parts": [
+      { "catalan": "fer" }
+    ]
+  },
+  {
+    "catalan": "menjar",
+    "english": "to eat",
+    "parts": [
+      { "catalan": "menjar" }
+    ]
+  },
+  {
+    "catalan": "dormir",
+    "english": "to sleep",
+    "parts": [
+      { "catalan": "dormir" }
+    ]
+  },
+  {
+    "catalan": "beure",
+    "english": "to drink",
+    "parts": [
+      { "catalan": "beure" }
+    ]
+  },
+  {
+    "catalan": "pujar",
+    "english": "to ride",
+    "parts": [
+      { "catalan": "pujar" }
+    ]
+  },
+  {
+    "catalan": "parlar",
+    "english": "to speak",
+    "parts": [
+      { "catalan": "parlar" }
+    ]
+  },
+  {
+    "catalan": "estudiar",
+    "english": "to study",
+    "parts": [
+      { "catalan": "estudiar" }
+    ]
+  },
+  {
+    "catalan": "veure",
+    "english": "to see",
+    "parts": [
+      { "catalan": "veure" }
+    ]
+  },
+  {
+    "catalan": "llegir",
+    "english": "to read",
+    "parts": [
+      { "catalan": "llegir" }
+    ]
+  },
+  {
+    "catalan": "trucar",
+    "english": "to call",
+    "parts": [
+      { "catalan": "trucar" }
+    ]
+  }
+]

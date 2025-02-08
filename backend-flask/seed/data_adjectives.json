@@ -1,0 +1,247 @@
+[
+  {
+    "catalan": "bo",
+    "english": "good",
+    "parts": [
+      { "catalan": "bo" }
+    ]
+  },
+  {
+    "catalan": "vell",
+    "english": "old",
+    "parts": [
+      { "catalan": "vell" }
+    ]
+  },
+  {
+    "catalan": "ocupat",
+    "english": "busy",
+    "parts": [
+      { "catalan": "ocupat" }
+    ]
+  },
+  {
+    "catalan": "nou",
+    "english": "new",
+    "parts": [
+      { "catalan": "nou" }
+    ]
+  },
+  {
+    "catalan": "dolent",
+    "english": "bad",
+    "parts": [
+      { "catalan": "dolent" }
+    ]
+  },
+  {
+    "catalan": "trist",
+    "english": "sad",
+    "parts": [
+      { "catalan": "trist" }
+    ]
+  },
+  {
+    "catalan": "content",
+    "english": "glad",
+    "parts": [
+      { "catalan": "content" }
+    ]
+  },
+  {
+    "catalan": "gruixut",
+    "english": "fat",
+    "parts": [
+      { "catalan": "gruixut" }
+    ]
+  },
+  {
+    "catalan": "prim",
+    "english": "thin",
+    "parts": [
+      { "catalan": "prim" }
+    ]
+  },
+  {
+    "catalan": "interessant",
+    "english": "interesting",
+    "parts": [
+      { "catalan": "interessant" }
+    ]
+  },
+  {
+    "catalan": "mateix",
+    "english": "same",
+    "parts": [
+      { "catalan": "mateix" }
+    ]
+  },
+  {
+    "catalan": "brut",
+    "english": "dirty",
+    "parts": [
+      { "catalan": "brut" }
+    ]
+  },
+  {
+    "catalan": "bonic",
+    "english": "pretty",
+    "parts": [
+      { "catalan": "bonic" }
+    ]
+  },
+  {
+    "catalan": "calent",
+    "english": "hot",
+    "parts": [
+      { "catalan": "calent" }
+    ]
+  },
+  {
+    "catalan": "fred",
+    "english": "cold",
+    "parts": [
+      { "catalan": "fred" }
+    ]
+  },
+  {
+    "catalan": "agradar",
+    "english": "to like",
+    "parts": [
+      { "catalan": "agradar" }
+    ]
+  },
+  {
+    "catalan": "deliciós",
+    "english": "tasty",
+    "parts": [
+      { "catalan": "deliciós" }
+    ]
+  },
+  {
+    "catalan": "amor",
+    "english": "love",
+    "parts": [
+      { "catalan": "amor" }
+    ]
+  },
+  {
+    "catalan": "picant",
+    "english": "spicy",
+    "parts": [
+      { "catalan": "picant" }
+    ]
+  },
+  {
+    "catalan": "avorrit",
+    "english": "boring",
+    "parts": [
+      { "catalan": "avorrit" }
+    ]
+  },
+  {
+    "catalan": "famos",
+    "english": "famous",
+    "parts": [
+      { "catalan": "famos" }
+    ]
+  },
+  {
+    "catalan": "alt",
+    "english": "tall",
+    "parts": [
+      { "catalan": "alt" }
+    ]
+  },
+  {
+    "catalan": "baix",
+    "english": "short",
+    "parts": [
+      { "catalan": "baix" }
+    ]
+  },
+  {
+    "catalan": "car",
+    "english": "expensive",
+    "parts": [
+      { "catalan": "car" }
+    ]
+  },
+  {
+    "catalan": "barat",
+    "english": "cheap",
+    "parts": [
+      { "catalan": "barat" }
+    ]
+  },
+  {
+    "catalan": "gran",
+    "english": "large",
+    "parts": [
+      { "catalan": "gran" }
+    ]
+  },
+  {
+    "catalan": "divertit",
+    "english": "fun",
+    "parts": [
+      { "catalan": "divertit" }
+    ]
+  },
+  {
+    "catalan": "fort",
+    "english": "strong",
+    "parts": [
+      { "catalan": "fort" }
+    ]
+  },
+  {
+    "catalan": "feble",
+    "english": "weak",
+    "parts": [
+      { "catalan": "feble" }
+    ]
+  },
+  {
+    "catalan": "brillant",
+    "english": "bright",
+    "parts": [
+      { "catalan": "brillant" }
+    ]
+  },
+  {
+    "catalan": "fosc",
+    "english": "dark",
+    "parts": [
+      { "catalan": "fosc" }
+    ]
+  },
+  {
+    "catalan": "pesat",
+    "english": "heavy",
+    "parts": [
+      { "catalan": "pesat" }
+    ]
+  },
+  {
+    "catalan": "lleuger",
+    "english": "light",
+    "parts": [
+      { "catalan": "lleuger" }
+    ]
+  },
+  {
+    "catalan": "ràpid",
+    "english": "fast",
+    "parts": [
+      { "catalan": "ràpid" }
+    ]
+  },
+  {
+    "catalan": "lent",
+    "english": "slow",
+    "parts": [
+      { "catalan": "lent" }
+    ]
+  }
+]
