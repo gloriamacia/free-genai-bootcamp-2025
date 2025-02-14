@@ -44,7 +44,7 @@ export default function StudySessionShow() {
       setError(null)
       try {
         const response = await fetch(
-          `http://localhost:5000/api/study-sessions/${id}?page=${currentPage}&per_page=10`
+          `http://localhost:5000/study-sessions/${id}?page=${currentPage}&per_page=10`
         )
         if (!response.ok) {
           throw new Error('Failed to fetch session data')
