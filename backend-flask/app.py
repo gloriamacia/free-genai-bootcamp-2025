@@ -44,9 +44,9 @@ def create_app(test_config=None):
     # Get allowed origins from study_activities table
     allowed_origins = get_allowed_origins(app)
     
-    # In development, add localhost to allowed origins
+    # In development, add 127.0.0.1 to allowed origins
     if app.debug:
-        allowed_origins.extend(["http://localhost:8080", "http://127.0.0.1:8080"])
+        allowed_origins.extend(["http://127.0.0.1:5000", "http://127.0.0.1:8080"])
     
     # Configure CORS with combined origins
     CORS(app, resources={
