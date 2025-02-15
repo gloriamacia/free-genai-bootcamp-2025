@@ -20,7 +20,8 @@ export default function GroupShow() {
   const { setCurrentGroup } = useNavigation()
   const [words, setWords] = useState<Word[]>([])
   const [studySessions, setStudySessions] = useState<StudySession[]>([])
-  const [wordSortKey, setWordSortKey] = useState<WordSortKey>('kanji')
+  // Updated default sort key to 'catalan'
+  const [wordSortKey, setWordSortKey] = useState<WordSortKey>('catalan')
   const [wordSortDirection, setWordSortDirection] = useState<'asc' | 'desc'>('asc')
   const [sessionSortKey, setSessionSortKey] = useState<StudySessionSortKey>('startTime')
   const [sessionSortDirection, setSessionSortDirection] = useState<'asc' | 'desc'>('desc')

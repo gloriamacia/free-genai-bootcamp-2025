@@ -31,7 +31,8 @@ export default function StudySessionShow() {
   const [words, setWords] = useState<Word[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
-  const [sortKey, setSortKey] = useState<WordSortKey>('kanji')
+  // Updated default sort key to 'catalan'
+  const [sortKey, setSortKey] = useState<WordSortKey>('catalan')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -44,7 +45,7 @@ export default function StudySessionShow() {
       setError(null)
       try {
         const response = await fetch(
-          `http://localhost:5000/study-sessions/${id}?page=${currentPage}&per_page=10`
+          `http://127.0.0.1:5000/study-sessions/${id}?page=${currentPage}&per_page=10`
         )
         if (!response.ok) {
           throw new Error('Failed to fetch session data')

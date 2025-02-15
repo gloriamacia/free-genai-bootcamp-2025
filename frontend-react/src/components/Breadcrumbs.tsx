@@ -41,7 +41,7 @@ export default function Breadcrumbs() {
       if (currentGroup && name === currentGroup.id.toString()) {
         displayName = currentGroup.group_name
       } else if (currentWord && name === currentWord.id.toString()) {
-        displayName = currentWord.kanji
+        displayName = currentWord.catalan
       } else if (currentStudyActivity && name === currentStudyActivity.id.toString()) {
         displayName = currentStudyActivity.title
       }
