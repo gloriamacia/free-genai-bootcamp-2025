@@ -91,7 +91,7 @@ export default function WordShow() {
                   <Link
                     key={group.id}
                     to={`/groups/${group.id}`}
-                    className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800"
+                    className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-800 text-primary-foreground"
                   >
                     {group.name}
                   </Link>

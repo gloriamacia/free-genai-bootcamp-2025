@@ -14,14 +14,14 @@ interface WordsTableProps {
 
 export default function WordsTable({ words, sortKey, sortDirection, onSort }: WordsTableProps) {
   return (
-    <div className="overflow-x-auto bg-white dark:bg-gray-800 rounded-lg shadow">
+    <div className="overflow-x-auto bg-background rounded-lg shadow">
       <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
         <thead className="bg-gray-50 dark:bg-gray-900">
           <tr>
             {(['catalan', 'english', 'correct_count', 'wrong_count'] as const).map((key) => (
               <th
                 key={key}
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="px-6 py-3 text-left text-sm text-foreground font-bold uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
                 onClick={() => onSort(key)}
               >
                 <div className="flex items-center space-x-1">
@@ -41,15 +41,15 @@ export default function WordsTable({ words, sortKey, sortDirection, onSort }: Wo
         <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
           {words.map((word) => (
             <tr key={word.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-4 whitespace-nowrap text-sm">
                 <Link
                   to={`/words/${word.id}`}
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  className="text-primary hover:underline"
                 >
                   {word.catalan}
                 </Link>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-secondary">
                 {word.english}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-green-500 dark:text-green-400">

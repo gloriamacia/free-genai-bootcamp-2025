@@ -49,7 +49,7 @@ export default function Words() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Words</h1>
+      <h1 className="text-2xl font-bold text-primary">Words</h1>
       
       <WordsTable 
         words={words}

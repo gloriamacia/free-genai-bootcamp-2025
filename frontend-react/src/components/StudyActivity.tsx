@@ -17,7 +17,7 @@ export default function StudyActivity({ activity }: ActivityProps) {
       <div className="p-4">
         <h3 className="text-xl font-semibold mb-2">{activity.title}</h3>
         <div className="flex justify-between">
-          <Button asChild>
+          <Button asChild className='hover:bg-secondary hover:text-white'>
             <Link to={`/study-activities/${activity.id}/launch`}>
               Launch
             </Link>
