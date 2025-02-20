@@ -1,0 +1,21 @@
+{
+    "dialeg": [
+        "[Veu 1]: Ei! Com portes els estudis?",
+        "[Veu 2]: Uf, una mica estressat… Tinc molts exàmens i no sé si vaig pel bon camí.",
+        "[Veu 1]: Ja… És normal sentir-se així. Has pensat en canviar de mètode d’estudi?",
+        "[Veu 2]: Sí, però no sé quin podria funcionar millor per mi.",
+        "[Veu 1]: Potser et podria anar bé estudiar en grup. A mi m’ajuda molt a entendre millor els temes.",
+        "[Veu 2]: Bona idea! A més, així podria resoldre dubtes més fàcilment amb companys.",
+        "[Veu 1]: Exacte! També podries parlar amb algun professor si tens dificultats.",
+        "[Veu 2]: Sí, ho faré. I també intentaré organitzar millor el meu temps per no deixar-ho tot per l’últim moment.",
+        "[Veu 1]: Això segur que t’ajudarà! Ànims, que segur que et sortirà bé!"
+    ],
+    "pregunta": "Quina estratègia decideix provar el Pau per millorar els seus estudis?",
+    "opcions": {
+        "A": "Deixar els estudis",
+        "B": "Canviar de carrera",
+        "C": "Estudiar en grup",
+        "D": "Comprar un curs online"
+    },
+    "resposta_correcta": "C"
+}

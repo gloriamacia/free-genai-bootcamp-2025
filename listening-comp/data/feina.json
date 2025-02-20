@@ -1,0 +1,21 @@
+{
+    "dialeg": [
+        "[Veu 1]: Ei! Com va la feina últimament?",
+        "[Veu 2]: Uf, força intensa… Tinc massa feina i sento que necessito un canvi.",
+        "[Veu 1]: Sí? I què tens en ment? Vols canviar d’empresa o de sector?",
+        "[Veu 2]: No ho sé... Potser busco una empresa amb millor conciliació i menys estrès.",
+        "[Veu 1]: És important! Has mirat opcions de teletreball? Ara hi ha moltes empreses que ho ofereixen.",
+        "[Veu 2]: Bona idea! Així tindria més flexibilitat. He sentit parlar d’una startup que busca gent i permet treballar des de casa.",
+        "[Veu 1]: Oh, això sona perfecte per tu! A més, segur que és un ambient més dinàmic.",
+        "[Veu 2]: Sí, crec que ho provaré. M’animo a enviar el currículum i veure què passa!",
+        "[Veu 1]: Genial! Segur que et va bé. Endavant amb el canvi!"
+    ],
+    "pregunta": "Quina decisió pren en Sergi respecte a la seva feina?",
+    "opcions": {
+        "A": "Seguir a la mateixa feina",
+        "B": "Canviar de sector",
+        "C": "Buscar una feina amb teletreball",
+        "D": "Deixar de treballar per un temps"
+    },
+    "resposta_correcta": "C"
+}
