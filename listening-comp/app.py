@@ -15,10 +15,9 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
 # Initialize session state for dark mode if not already set.
 if "dark_mode" not in st.session_state:
-    st.session_state.dark_mode = False
+    st.session_state.dark_mode = True
 
 # Use st.toggle for dark mode.
 dark_mode_toggle = st.toggle("🌙", value=st.session_state.dark_mode)
@@ -75,7 +74,6 @@ input {{
 """
 st.markdown(css, unsafe_allow_html=True)
 
-
 # Configure AWS Polly client.
 polly = boto3.client("polly", region_name="us-east-1")
 
@@ -88,23 +86,23 @@ st.title("Exercici de Comprensió Oral en Català 👂🏽")
 # Layout: two columns – main content (col1) and image (col2).
 col1, col2 = st.columns([2.5, 1.5])
 
+# Default topic is "vacances". The selectbox defaults to it.
 with col1:
-    inner_col1, inner_col2 = st.columns([1, 1])
-    with inner_col1:
-        topic = st.selectbox("Selecciona un tema per al diàleg:", TOPICS)
+    col1_, col2_ = st.columns([2, 2])
+    with col1_:
+        topic = st.selectbox("Selecciona un tema per al diàleg", TOPICS, index=TOPICS.index("vacances"))
 
-# Initialize session state for dialogue and answer tracking.
-if "dialogue_data" not in st.session_state:
-    st.session_state.dialogue_data = None
-if "selected_answer" not in st.session_state:
-    st.session_state.selected_answer = None
-if "is_correct" not in st.session_state:
-    st.session_state.is_correct = None
-
-if st.button("Generar Diàleg"):
+# Load dialogue automatically if not already loaded or if topic changed.
+if ("current_topic" not in st.session_state or 
+    st.session_state.get("current_topic") != topic or 
+    st.session_state.get("dialogue_data") is None):
+    
+    st.session_state.current_topic = topic
     file_path = os.path.join(DATA_PATH, f"{topic}.json")
     if not os.path.exists(file_path):
         st.error(f"No s'ha trobat el fitxer de diàleg: {file_path}")
+        st.session_state.dialogue_data = None
+        st.session_state.combined_audio = None
     else:
         try:
             # Load dialogue data from JSON.
@@ -112,9 +110,6 @@ if st.button("Generar Diàleg"):
                 st.session_state.dialogue_data = json.load(file)
 
             dialogue_script = st.session_state.dialogue_data["dialeg"]
-            question = st.session_state.dialogue_data["pregunta"]
-            options = st.session_state.dialogue_data["opcions"]
-            correct_answer = st.session_state.dialogue_data["resposta_correcta"]
 
             # Reset answer-related session state.
             st.session_state.selected_answer = None
@@ -152,28 +147,35 @@ if st.button("Generar Diàleg"):
                 combined_audio = BytesIO()
                 combined.export(combined_audio, format="mp3")
                 combined_audio.seek(0)
+                
+                # Persist the audio in session state.
+                st.session_state.combined_audio = combined_audio
 
-                with col1:
-                    st.subheader("🎧 Escolta el diàleg:")
-                    st.audio(combined_audio, format="audio/mp3")
         except Exception as e:
             st.error(f"Error carregant el diàleg: {e}")
 
 with col2:
     st.image("lilly_call.png", use_container_width=True)
 
+# Display the audio if it exists.
+if st.session_state.get("combined_audio") is not None:
+    with col1:
+        st.subheader("🎧 Escolta el diàleg")
+        st.audio(st.session_state.combined_audio, format="audio/mp3")
+
 # If dialogue data is available, display the comprehension question.
-if st.session_state.dialogue_data:
-    question = st.session_state.dialogue_data["pregunta"]
-    options = st.session_state.dialogue_data["opcions"]
-    correct_answer = st.session_state.dialogue_data["resposta_correcta"]
+if st.session_state.get("dialogue_data"):
+    dialogue_data = st.session_state.dialogue_data
+    question = dialogue_data["pregunta"]
+    options = dialogue_data["opcions"]
+    correct_answer = dialogue_data["resposta_correcta"]
 
     with col1:
-        st.subheader("❓ Pregunta de comprensió:")
+        st.subheader("❓ Pregunta de comprensió")
         st.write(question)
 
         # Radio button for answer selection.
-        selected_option = st.radio("Escull una opció:", list(options.values()), key="user_selection")
+        selected_option = st.radio("Escull una opció", list(options.values()), key="user_selection")
 
         # Button to check the answer.
         if st.button("Comprovar resposta"):
@@ -184,7 +186,7 @@ if st.session_state.dialogue_data:
                 st.warning("Si us plau, selecciona una resposta.")
 
 # Display feedback based on the answer.
-if st.session_state.selected_answer is not None:
+if st.session_state.get("selected_answer") is not None:
     with col1:
         if st.session_state.is_correct:
             st.success("✅ Correcte! Bona feina!")
