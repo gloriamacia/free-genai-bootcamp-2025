@@ -1,29 +1,23 @@
 import gradio as gr
 import requests
 import random
+from gradio.themes import GoogleFont
+
+# Create a custom theme:
+# - Use Nunito as the font.
+# - Set primary button background to #55CD02 in both light and dark modes.
+# - In dark mode, set the body background to #333333.
+theme = gr.themes.Default(font=[GoogleFont("Nunito")]).set(
+    button_primary_background_fill="#55CD02",
+    button_primary_background_fill_dark="#55CD02",
+    body_background_fill_dark="#333333"
+)
 
 # Backend URL
 BACKEND_URL = "http://127.0.0.1:5000"
 
-def get_random_group():
-    try:
-        response = requests.get(f"{BACKEND_URL}/groups")
-        response.raise_for_status()
-        data = response.json()
-        groups = data.get("groups", [])
-        if not groups:
-            return None, "No groups found."
-        random_group = random.choice(groups)
-        group_id = random_group.get("id")
-        # Try "group_name" first; if not available, use "name"
-        group_name = random_group.get("group_name") or random_group.get("name", "Unknown")
-        return group_id, f"Current Group: {group_name}"
-    except Exception as e:
-        return None, f"Error: {e}"
-
 def fetch_random_word(current_group):
     try:
-        # Fetch words only from the specified group.
         response = requests.get(f"{BACKEND_URL}/groups/{current_group}/words/raw")
         response.raise_for_status()
         data = response.json()
@@ -42,15 +36,18 @@ def generate_word(current_group):
     english_word, correct_catalan, word_id = fetch_random_word(current_group)
     if not english_word:
         return "", "", correct_catalan, None
-    # Return a blank string for the answer input field.
     return english_word, "", correct_catalan, word_id
 
-def init_game():
-    group_id, group_text = get_random_group()
-    if group_id is None:
-        return None, group_text, "", "", "", ""
-    english_word, blank, correct_catalan, word_id = generate_word(group_id)
-    return group_id, group_text, english_word, blank, correct_catalan, word_id
+def init_game(request: gr.Request):
+    params = dict(request.query_params)
+    group_id = params.get("group_id")
+    session_id = params.get("session_id")
+    
+    if not group_id:
+        return session_id, None, "No group id provided.", "", "", None
+
+    english_word, correct_catalan, word_id = fetch_random_word(group_id)
+    return session_id, group_id, english_word, "", correct_catalan, word_id
 
 def check_answer(user_input, english_word, correct_catalan, review_items, current_word_id):
     correct = user_input.strip().lower() == correct_catalan.lower()
@@ -67,9 +64,8 @@ def check_answer(user_input, english_word, correct_catalan, review_items, curren
 
 def save_study_session(study_session_id, review_items, current_group):
     if not review_items:
-        return study_session_id, []  # nothing to update
+        return study_session_id, []
     if not study_session_id:
-        # Use study_activity_id 2 for "Writing Practice"
         payload = {"group_id": current_group, "study_activity_id": 2}
         try:
             response = requests.post(f"{BACKEND_URL}/study-sessions", json=payload)
@@ -86,16 +82,22 @@ def save_study_session(study_session_id, review_items, current_group):
         except Exception as e:
             raise gr.Error("Failed to save study session")
     gr.Info("💾 Study session saved!", duration=2)
-    return study_session_id, []  # Clear review items after saving
+    return study_session_id, []
 
-with gr.Blocks() as demo:
-    gr.Markdown("# English to Catalan Writing Practice")
+# Create Blocks with custom CSS to center content.
+with gr.Blocks(theme=theme, css="""
+.center {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+""") as demo:
+    gr.HTML("<h1> ✍🏼 English to Catalan Writing Practice </h1>")
     
     # States for study session, review items, and current group.
     study_session_state = gr.State(None)
     review_items_state = gr.State([])
     current_group_state = gr.State(None)
-    current_group_display = gr.Markdown("Current Group: ", visible=True)
     
     with gr.Row():
         english_output = gr.Textbox(label="English Word", interactive=False)
@@ -108,27 +110,31 @@ with gr.Blocks() as demo:
     result_error = gr.Markdown(visible=False)
     
     with gr.Row():
-        check_button = gr.Button("Check Answer")
-        save_button = gr.Button("Save Study Session")
+        check_button = gr.Button("Check Answer", variant="primary")
+        save_button = gr.Button("Save Study Session", variant="primary")
     
-    # On page load, initialize the game.
-    demo.load(fn=init_game, outputs=[current_group_state, current_group_display, english_output, answer_input, hidden_correct, hidden_word_id])
+    demo.load(fn=init_game, outputs=[study_session_state, current_group_state, english_output, answer_input, hidden_correct, hidden_word_id])
     
-    # When "Check Answer" is clicked:
-    # 1. Evaluate the answer and update review items.
     check_button.click(fn=check_answer,
                        inputs=[answer_input, english_output, hidden_correct, review_items_state, hidden_word_id],
                        outputs=[result_success, result_error, review_items_state])
-    # 2. Immediately generate a new word.
     check_button.click(fn=generate_word,
                        inputs=current_group_state,
                        outputs=[english_output, answer_input, hidden_correct, hidden_word_id])
     
-    # "Save Study Session": create a session if needed, then send recorded reviews.
     save_button.click(fn=save_study_session,
                       inputs=[study_session_state, review_items_state, current_group_state],
                       outputs=[study_session_state, review_items_state])
-    # Optionally clear any error message after saving.
     save_button.click(lambda: gr.update(value="", visible=False), outputs=result_error)
+    
+    gr.Markdown("Save progress and close the tab when finished.")
+    with gr.Row(elem_classes="center"):
+        gr.Image(
+            value="writing-practice.png", 
+            show_label=False,
+            show_download_button=False,
+            show_fullscreen_button=False,
+            container=False
+        )
 
 demo.launch()
