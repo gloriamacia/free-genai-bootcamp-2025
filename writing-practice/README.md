@@ -2,7 +2,8 @@
 
 This is an interactive writing practice application that helps users improve their Catalan vocabulary by translating English words. The app randomly selects a word from a chosen group and challenges the user to provide the correct Catalan translation. It checks the answer in real-time, displays immediate feedback, and allows users to save their study sessions to a Flask-based backend. 
 
-![User Interface Preview](ui.png)
+![User Interface Dark Mode](ui-dark.png)
+![User Interface Integration Dark Mode](integration-dark.png)
 
 ## Features
 

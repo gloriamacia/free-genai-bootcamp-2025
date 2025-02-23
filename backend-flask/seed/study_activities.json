@@ -8,5 +8,10 @@
     "name": "Writing Practice",
     "url": "http://127.0.0.1:7860",
     "preview_url": "/assets/study_activities/writing-practice.png"
+  },
+  {
+    "name": "Listening Practice",
+    "url": "http://127.0.0.1:7861",
+    "preview_url": "/assets/study_activities/listening-practice.png"
   }
 ]
