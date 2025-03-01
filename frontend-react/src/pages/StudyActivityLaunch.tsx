@@ -47,6 +47,11 @@ export default function StudyActivityLaunch() {
         setLaunchData(data);
         setCurrentStudyActivity(data.activity);
         setLoading(false);
+
+        // If activity id is not 1 or 2, launch immediately
+        if (data.activity.id !== 1 && data.activity.id !== 2) {
+          handleDirectLaunch(data.activity);
+        }
       })
       .catch((err) => {
         setError(err.message);
@@ -54,18 +59,21 @@ export default function StudyActivityLaunch() {
       });
   }, [id, setCurrentStudyActivity]);
 
-  // Clean up when unmounting
   useEffect(() => {
     return () => {
       setCurrentStudyActivity(null);
     };
   }, [setCurrentStudyActivity]);
 
+  const handleDirectLaunch = (activity: StudyActivity) => {
+    window.open(activity.launch_url, "_blank");
+    navigate("/");
+  };
+
   const handleLaunch = async () => {
     if (!launchData?.activity || !selectedGroup) return;
 
     try {
-      // Create a study session first
       const result = await createStudySession(
         parseInt(selectedGroup),
         launchData.activity.id
@@ -75,10 +83,7 @@ export default function StudyActivityLaunch() {
       launchUrl.searchParams.set("group_id", selectedGroup);
       launchUrl.searchParams.set("session_id", sessionId.toString());
 
-      // Open the modified URL in a new tab
       window.open(launchUrl.toString(), "_blank");
-
-      // Navigate to the session show page
       navigate(`/sessions/${sessionId}`);
     } catch (error) {
       console.error("Failed to launch activity:", error);
@@ -93,8 +98,11 @@ export default function StudyActivityLaunch() {
     return <div className="text-red-500">Error: {error}</div>;
   }
 
-  if (!launchData) {
-    return <div className="text-red-500">Activity not found</div>;
+  if (
+    !launchData ||
+    (launchData.activity.id !== 1 && launchData.activity.id !== 2)
+  ) {
+    return null;
   }
 
   return (
