@@ -18,5 +18,10 @@
     "name": "Song Practice",
     "url": "http://127.0.0.1:7862",
     "preview_url": "/assets/study_activities/song-practice.png"
+  },
+  {
+    "name": "Speaking Practice",
+    "url": "http://127.0.0.1:7863",
+    "preview_url": "/assets/study_activities/speaking-practice.png"
   }
 ]

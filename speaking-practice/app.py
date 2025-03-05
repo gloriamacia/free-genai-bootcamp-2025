@@ -30,7 +30,7 @@ css = """
       display: block;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 200px;
+      margin-top: 20px;
 }
 """
 
@@ -179,4 +179,4 @@ with gr.Blocks(css=css, js=js_func, theme=theme) as demo:
     # Update both transcription and evaluation feedback.
     audio_component.change(process_audio, inputs=[audio_component, context_text_state], outputs=[output_transcript, feedback])
 
-demo.launch()
+demo.launch(server_port=7863)
