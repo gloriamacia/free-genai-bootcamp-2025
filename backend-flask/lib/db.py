@@ -66,6 +66,8 @@ class Db:
       INSERT INTO study_activities (name,url,preview_url) VALUES (?,?,?)
       ''', (activity['name'],activity['url'],activity['preview_url'],))
     self.get().commit()
+    print(f"Successfully added {len(study_actvities)} to the language portal")
+
 
   def import_word_json(self,cursor,group_name,data_json_path):
       # Insert a new group
@@ -107,7 +109,7 @@ class Db:
 
       self.get().commit()
 
-      print(f"Successfully added {len(words)} verbs to the '{group_name}' group.")
+      print(f"Successfully added {len(words)} words to the '{group_name}' group.")
 
   # Initialize the database with sample data
   def init(self, app):

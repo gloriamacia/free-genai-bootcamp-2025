@@ -35,7 +35,7 @@ pip install gradio requests flask flask-cors
 
 1. **Backend Setup:**
 
-   - Ensure you have a Flask backend running on `http://127.0.0.1:5000` that exposes endpoints for:
+   - Ensure you have a Flask backend running on `http://127.0.0.1:5001` that exposes endpoints for:
      - `/groups` – Returns the available word groups.
      - `/groups/<group_id>/words/raw` – Returns raw word data for the specified group.
      - `/study-sessions` (POST) – Creates a new study session.

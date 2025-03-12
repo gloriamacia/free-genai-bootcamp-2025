@@ -1,10 +1,5 @@
 [
   {
-    "name": "Typing Tutor",
-    "url": "http://127.0.0.1:5000",
-    "preview_url": "/assets/study_activities/typing-tutor.png"
-  },
-  {
     "name": "Writing Practice",
     "url": "http://127.0.0.1:7860",
     "preview_url": "/assets/study_activities/writing-practice.png"

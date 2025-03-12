@@ -1,54 +1,60 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { fetchWordDetails, type Word } from '../services/api'
-import { useNavigation } from '../context/NavigationContext'
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { fetchWordDetails, type Word } from "../services/api";
+import { useNavigation } from "../context/NavigationContext";
 
 export default function WordShow() {
-  const { id } = useParams<{ id: string }>()
-  const [word, setWord] = useState<Word | null>(null)
-  const { setCurrentWord } = useNavigation()
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const { id } = useParams<{ id: string }>();
+  const [word, setWord] = useState<Word | null>(null);
+  const { setCurrentWord } = useNavigation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadWord = async () => {
-      if (!id) return
+      if (!id) return;
 
-      setIsLoading(true)
-      setError(null)
+      setIsLoading(true);
+      setError(null);
       try {
-        const wordData = await fetchWordDetails(parseInt(id, 10))
-        setWord(wordData)
-        setCurrentWord(wordData)
+        const wordData = await fetchWordDetails(parseInt(id, 10));
+        setWord(wordData);
+        setCurrentWord(wordData);
       } catch (err) {
-        setError('Failed to load word details')
-        console.error(err)
+        setError("Failed to load word details");
+        console.error(err);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    loadWord()
-  }, [id, setCurrentWord])
+    loadWord();
+  }, [id, setCurrentWord]);
 
   useEffect(() => {
     return () => {
-      setCurrentWord(null)
-    }
-  }, [setCurrentWord])
+      setCurrentWord(null);
+    };
+  }, [setCurrentWord]);
 
   if (isLoading) {
-    return <div className="text-center py-4">Loading...</div>
+    return <div className="text-center py-4">Loading...</div>;
   }
 
   if (error || !word) {
-    return <div className="text-red-500 text-center py-4">{error || 'Word not found'}</div>
+    return (
+      <div className="text-red-500 text-center py-4">
+        {error || "Word not found"}
+      </div>
+    );
   }
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Word Details</h1>
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+          Word Details
+        </h1>
         <Link
           to="/words"
           className="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 dark:text-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
@@ -60,34 +66,54 @@ export default function WordShow() {
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
         <div className="p-6 space-y-4">
           <div>
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Catalan</h2>
-            <p className="mt-1 text-3xl text-gray-600 dark:text-gray-300">{word.catalan}</p>
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+              Catalan
+            </h2>
+            <p className="mt-1 text-3xl text-gray-600 dark:text-gray-300">
+              {word.catalan}
+            </p>
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">English</h2>
-            <p className="mt-1 text-xl text-gray-600 dark:text-gray-300">{word.english}</p>
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+              English
+            </h2>
+            <p className="mt-1 text-xl text-gray-600 dark:text-gray-300">
+              {word.english}
+            </p>
           </div>
 
           <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Study Statistics</h2>
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+              Study Statistics
+            </h2>
             <div className="mt-2 grid grid-cols-2 gap-4">
               <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <p className="text-sm text-gray-500 dark:text-gray-400">Correct Answers</p>
-                <p className="mt-1 text-2xl font-semibold text-green-500">{word.correct_count}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Correct Answers
+                </p>
+                <p className="mt-1 text-2xl font-semibold text-green-500">
+                  {word.correct_count}
+                </p>
               </div>
               <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <p className="text-sm text-gray-500 dark:text-gray-400">Wrong Answers</p>
-                <p className="mt-1 text-2xl font-semibold text-red-500">{word.wrong_count}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Wrong Answers
+                </p>
+                <p className="mt-1 text-2xl font-semibold text-red-500">
+                  {word.wrong_count}
+                </p>
               </div>
             </div>
           </div>
 
           {word.groups && word.groups.length > 0 && (
             <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Word Groups</h2>
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+                Word Groups
+              </h2>
               <div className="mt-2 flex flex-wrap gap-2">
-                {word.groups.map(group => (
+                {word.groups.map((group) => (
                   <Link
                     key={group.id}
                     to={`/groups/${group.id}`}
@@ -102,5 +128,5 @@ export default function WordShow() {
         </div>
       </div>
     </div>
-  )
+  );
 }

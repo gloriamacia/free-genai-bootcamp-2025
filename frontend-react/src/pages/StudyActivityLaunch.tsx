@@ -48,8 +48,8 @@ export default function StudyActivityLaunch() {
         setCurrentStudyActivity(data.activity);
         setLoading(false);
 
-        // If activity id is not 1 or 2, launch immediately
-        if (data.activity.id !== 1 && data.activity.id !== 2) {
+        // If activity id is not 1, launch immediately
+        if (data.activity.id !== 1) {
           handleDirectLaunch(data.activity);
         }
       })
@@ -78,7 +78,13 @@ export default function StudyActivityLaunch() {
         parseInt(selectedGroup),
         launchData.activity.id
       );
-      const sessionId = result.id;
+      console.log("createStudySession response:", result);
+
+      // Extract session ID directly from session_id property
+      const sessionId = result.session_id;
+      if (!sessionId) {
+        throw new Error("Session ID is missing in the response.");
+      }
       const launchUrl = new URL(launchData.activity.launch_url);
       launchUrl.searchParams.set("group_id", selectedGroup);
       launchUrl.searchParams.set("session_id", sessionId.toString());
@@ -98,10 +104,8 @@ export default function StudyActivityLaunch() {
     return <div className="text-red-500">Error: {error}</div>;
   }
 
-  if (
-    !launchData ||
-    (launchData.activity.id !== 1 && launchData.activity.id !== 2)
-  ) {
+  // If activity is not 1, we've already launched it.
+  if (!launchData || launchData.activity.id !== 1) {
     return null;
   }
 

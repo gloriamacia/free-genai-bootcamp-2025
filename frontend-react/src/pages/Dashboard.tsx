@@ -1,56 +1,70 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { BookOpen, Trophy, Clock, ArrowRight, Activity } from 'lucide-react'
-import { fetchRecentStudySession, fetchStudyStats, type StudyStats, type RecentSession } from '@/services/api'
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Trophy, Clock, ArrowRight, Activity } from "lucide-react";
+import {
+  fetchRecentStudySession,
+  fetchStudyStats,
+  type StudyStats,
+  type RecentSession,
+} from "@/services/api";
 
 interface DashboardCardProps {
-  title: string
-  icon: React.ElementType
-  children: React.ReactNode
-  className?: string
+  title: string;
+  icon: React.ElementType;
+  children: React.ReactNode;
+  className?: string;
 }
 
-function DashboardCard({ title, icon: Icon, children, className = '' }: DashboardCardProps) {
+function DashboardCard({
+  title,
+  icon: Icon,
+  children,
+  className = "",
+}: DashboardCardProps) {
   return (
-    <div className={`bg-card text-card-foreground rounded-lg shadow-sm p-6 ${className}`}>
+    <div
+      className={`bg-card text-card-foreground rounded-lg shadow-sm p-6 ${className}`}
+    >
       <div className="flex items-center gap-2 mb-4">
         <Icon className="w-5 h-5" />
         <h2 className="text-lg font-semibold">{title}</h2>
       </div>
       {children}
     </div>
-  )
+  );
 }
 
 export default function Dashboard() {
-  const [recentSession, setRecentSession] = useState<RecentSession | null>(null)
-  const [stats, setStats] = useState<StudyStats | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [recentSession, setRecentSession] = useState<RecentSession | null>(
+    null
+  );
+  const [stats, setStats] = useState<StudyStats | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadDashboardData = async () => {
       try {
         const [sessionData, statsData] = await Promise.all([
           fetchRecentStudySession(),
-          fetchStudyStats()
-        ])
-        setRecentSession(sessionData)
-        setStats(statsData)
+          fetchStudyStats(),
+        ]);
+        setRecentSession(sessionData);
+        setStats(statsData);
       } catch (error) {
-        console.error('Failed to load dashboard data:', error)
+        console.error("Failed to load dashboard data:", error);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    loadDashboardData()
-  }, [])
+    loadDashboardData();
+  }, []);
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold text-primary">Dashboard</h1>
-        <Link 
+        <Link
           to="/study-activities"
           className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-secondary"
         >
@@ -67,7 +81,9 @@ export default function Dashboard() {
           ) : recentSession ? (
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-card-foreground">{recentSession.activity_name}</span>
+                <span className="text-card-foreground">
+                  {recentSession.activity_name}
+                </span>
                 <span className="text-sm text-card-foreground">
                   {new Date(recentSession.created_at).toLocaleDateString()}
                 </span>
@@ -82,7 +98,7 @@ export default function Dashboard() {
                   <span>{recentSession.wrong_count} wrong</span>
                 </div>
               </div>
-              <Link 
+              <Link
                 to={`/groups/${recentSession.group_id}`}
                 className="inline-flex items-center gap-1 text-sm text-card-foreground hover:text-primary"
               >
@@ -92,7 +108,7 @@ export default function Dashboard() {
           ) : (
             <div className="text-center py-6">
               <p className="text-muted-foreground mb-4">No sessions yet</p>
-              <Link 
+              <Link
                 to="/study-activities"
                 className="text-card-foreground hover:text-primary inline-flex items-center gap-1"
               >
@@ -114,7 +130,9 @@ export default function Dashboard() {
               {stats.total_words_studied > 0 ? (
                 <>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Total Words Studied</span>
+                    <span className="text-muted-foreground">
+                      Total Words Studied
+                    </span>
                     <span className="text-2xl font-semibold">
                       {stats.total_words_studied} / {stats.total_vocabulary}
                     </span>
@@ -128,13 +146,22 @@ export default function Dashboard() {
                       </div>
                       <div className="text-right">
                         <span className="text-xs font-semibold inline-block text-primary">
-                          {Math.round((stats.mastered_words / stats.total_vocabulary) * 100)}%
+                          {Math.round(
+                            (stats.mastered_words / stats.total_vocabulary) *
+                              100
+                          )}
+                          %
                         </span>
                       </div>
                     </div>
                     <div className="overflow-hidden h-2 text-xs flex rounded bg-secondary/20">
                       <div
-                        style={{ width: `${(stats.mastered_words / stats.total_vocabulary) * 100}%` }}
+                        style={{
+                          width: `${
+                            (stats.mastered_words / stats.total_vocabulary) *
+                            100
+                          }%`,
+                        }}
                         className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-secondary"
                       />
                     </div>
@@ -145,7 +172,7 @@ export default function Dashboard() {
                   <p className="text-muted-foreground mb-4">
                     Start studying to see your progress
                   </p>
-                  <Link 
+                  <Link
                     to="/groups"
                     className="text-card-foreground hover:text-primary inline-flex items-center gap-1"
                   >
@@ -159,7 +186,7 @@ export default function Dashboard() {
               <p className="text-muted-foreground mb-4">
                 Start studying to see your progress
               </p>
-              <Link 
+              <Link
                 to="/groups"
                 className="text-card-foreground hover:text-primary inline-flex items-center gap-1"
               >
@@ -173,7 +200,7 @@ export default function Dashboard() {
         <DashboardCard title="Quick Stats" icon={Trophy}>
           {isLoading ? (
             <div className="animate-pulse space-y-3">
-              {[1, 2, 3].map(i => (
+              {[1, 2, 3].map((i) => (
                 <div key={i} className="h-4 bg-muted rounded" />
               ))}
             </div>
@@ -188,7 +215,9 @@ export default function Dashboard() {
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Study Sessions</span>
+                    <span className="text-muted-foreground">
+                      Study Sessions
+                    </span>
                     <span className="font-medium">{stats.total_sessions}</span>
                   </div>
                   <div className="flex justify-between items-center">
@@ -197,7 +226,9 @@ export default function Dashboard() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Study Streak</span>
-                    <span className="font-medium">{stats.current_streak} days</span>
+                    <span className="font-medium">
+                      {stats.current_streak} days
+                    </span>
                   </div>
                 </>
               ) : (
@@ -205,7 +236,7 @@ export default function Dashboard() {
                   <p className="text-muted-foreground mb-4">
                     Complete sessions to see your stats
                   </p>
-                  <Link 
+                  <Link
                     to="/study-activities"
                     className="text-card-foreground hover:text-primary inline-flex items-center gap-1"
                   >
@@ -219,7 +250,7 @@ export default function Dashboard() {
               <p className="text-muted-foreground mb-4">
                 Complete sessions to see your stats
               </p>
-              <Link 
+              <Link
                 to="/study-activities"
                 className="text-card-foreground hover:text-primary inline-flex items-center gap-1"
               >
@@ -232,12 +263,12 @@ export default function Dashboard() {
 
       {/* Additional image after cards */}
       <div className="flex justify-center">
-        <img 
-          src="/duolingo-cover-bg-removed.png" 
-          alt="Duolingo Cover" 
+        <img
+          src="/duolingo-cover-bg-removed.png"
+          alt="Duolingo Cover"
           className="w-full max-w-sm object-contain"
         />
       </div>
     </div>
-  )
+  );
 }

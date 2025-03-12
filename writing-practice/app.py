@@ -14,7 +14,7 @@ theme = gr.themes.Default(font=[GoogleFont("Nunito")]).set(
 )
 
 # Backend URL
-BACKEND_URL = "http://127.0.0.1:5000"
+BACKEND_URL = "http://127.0.0.1:5001"
 
 def fetch_random_word(current_group):
     try:
@@ -137,4 +137,4 @@ with gr.Blocks(theme=theme, css="""
             container=False
         )
 
-demo.launch()
+demo.launch(server_name="0.0.0.0")

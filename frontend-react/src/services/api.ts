@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://127.0.0.1:5000';
+const API_BASE_URL = 'http://127.0.0.1:5001';
 
 // Group types
 export interface Group {
@@ -104,10 +104,7 @@ export interface GroupWordsResponse {
 }
 
 export const fetchGroupDetails = async (
-  groupId: number,
-  page: number = 1,
-  sortBy: string = 'catalan',
-  order: 'asc' | 'desc' = 'asc'
+  groupId: number
 ): Promise<GroupDetails> => {
   const response = await fetch(`${API_BASE_URL}/groups/${groupId}`);
   if (!response.ok) {

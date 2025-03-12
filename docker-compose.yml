@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend-flask
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"   # Map container port 5000 to host port 5001 (adjust if needed)
+    volumes:
+      - ./backend-flask/words.db:/app/words.db
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+
+  frontend:
+    build:
+      context: ./frontend-react
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"     # Map Nginx port 80 inside container to host port 5173
+
+  writing-practice:
+    build:
+      context: ./writing-practice
+      dockerfile: Dockerfile
+    ports:
+      - "7860:7860"   # Expose the Gradio app on port 7860
+
+  listening-practice:
+    build:
+      context: ./listening-practice
+      dockerfile: Dockerfile
+    ports:
+      - "7861:7861"   # Expose the Streamlit app on port 7861
+    env_file:
+      - ./listening-practice/.env         # Pass AWS credentials (and any other environment variables) via .env

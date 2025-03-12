@@ -1,13 +1,15 @@
-import React from 'react'
-
 interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  onPageChange: (page: number) => void
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 }
 
-export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  if (totalPages <= 1) return null
+export default function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: PaginationProps) {
+  if (totalPages <= 1) return null;
 
   return (
     <div className="mt-4 flex justify-center space-x-2">
@@ -29,5 +31,5 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
         Next
       </button>
     </div>
-  )
+  );
 }
