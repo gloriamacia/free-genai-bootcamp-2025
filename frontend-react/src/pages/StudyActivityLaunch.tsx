@@ -38,22 +38,26 @@ export default function StudyActivityLaunch() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:5000/study-activities/${id}/launch`)
+    console.log("Fetching launch data for id:", id);
+    fetch(`http://127.0.0.1:5001/study-activities/${id}/launch`)
       .then((response) => {
+        console.log("Response status:", response.status);
         if (!response.ok) throw new Error("Failed to fetch launch data");
         return response.json();
       })
       .then((data) => {
+        console.log("Fetched data:", data);
         setLaunchData(data);
         setCurrentStudyActivity(data.activity);
         setLoading(false);
 
-        // If activity id is not 1, launch immediately
+        // Automatically launch if the activity id is not 1.
         if (data.activity.id !== 1) {
           handleDirectLaunch(data.activity);
         }
       })
       .catch((err) => {
+        console.error("Error fetching launch data:", err);
         setError(err.message);
         setLoading(false);
       });
@@ -66,6 +70,8 @@ export default function StudyActivityLaunch() {
   }, [setCurrentStudyActivity]);
 
   const handleDirectLaunch = (activity: StudyActivity) => {
+    console.log("Direct launching activity:", activity);
+    console.log("Launching URL from backend:", activity.launch_url);
     window.open(activity.launch_url, "_blank");
     navigate("/");
   };
@@ -80,15 +86,18 @@ export default function StudyActivityLaunch() {
       );
       console.log("createStudySession response:", result);
 
-      // Extract session ID directly from session_id property
-      const sessionId = result.session_id;
-      if (!sessionId) {
+      const sessionId = result.id;
+      console.log("Extracted sessionId:", sessionId, "Type:", typeof sessionId);
+      // You can also check if sessionId is null or undefined explicitly:
+      if (sessionId === null || sessionId === undefined) {
         throw new Error("Session ID is missing in the response.");
       }
+
       const launchUrl = new URL(launchData.activity.launch_url);
       launchUrl.searchParams.set("group_id", selectedGroup);
       launchUrl.searchParams.set("session_id", sessionId.toString());
 
+      console.log("Launching with URL:", launchUrl.toString());
       window.open(launchUrl.toString(), "_blank");
       navigate(`/sessions/${sessionId}`);
     } catch (error) {
@@ -104,7 +113,7 @@ export default function StudyActivityLaunch() {
     return <div className="text-red-500">Error: {error}</div>;
   }
 
-  // If activity is not 1, we've already launched it.
+  // If activity id is not 1, we've already launched it.
   if (!launchData || launchData.activity.id !== 1) {
     return null;
   }

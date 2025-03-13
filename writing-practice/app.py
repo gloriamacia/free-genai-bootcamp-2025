@@ -14,7 +14,7 @@ theme = gr.themes.Default(font=[GoogleFont("Nunito")]).set(
 )
 
 # Backend URL
-BACKEND_URL = "http://127.0.0.1:5001"
+BACKEND_URL = "http://backend:5000"
 
 def fetch_random_word(current_group):
     try:
@@ -66,7 +66,7 @@ def save_study_session(study_session_id, review_items, current_group):
     if not review_items:
         return study_session_id, []
     if not study_session_id:
-        payload = {"group_id": current_group, "study_activity_id": 2}
+        payload = {"group_id": current_group, "study_activity_id": 1}
         try:
             response = requests.post(f"{BACKEND_URL}/study-sessions", json=payload)
             response.raise_for_status()

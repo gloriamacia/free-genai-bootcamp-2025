@@ -27,4 +27,4 @@ ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_ENV=development
 
 # Default command to check and initialize the database before running Flask
-CMD ["sh", "-c", "invoke init-db && flask run --host=0.0.0.0 --port=5000"]
+CMD ["sh", "-c", "flask run --host=0.0.0.0 --port=5000"]
