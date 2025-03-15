@@ -26,16 +26,19 @@ theme = gr.themes.Default(font=[GoogleFont("Nunito")]).set(
 )
 
 css = """
-#output_image {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 20px;
-}
+    #output_image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+    }
+    h1 {
+        margin: 0 0 50px 0;
+        overflow: hidden;
+        text-align: center;
+        }
 """
 
-# Load environment variables from the .env file
-load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=openai_api_key)
 
@@ -130,7 +133,7 @@ def refresh_image():
     return f"images/{new_image}", new_context_text
 
 with gr.Blocks(css=css, js=js_func, theme=theme) as demo:
-    gr.Markdown("<h1 style='text-align:center;'>Catalan Speaking Practice</h1>")
+    gr.Markdown("<h1>Catalan Speaking Practice</h1>")
     gr.Markdown("Look at the image below depicting a traditional Catalan celebration. Describe what you see in Catalan within 1 minute.")
     
     with gr.Row():
@@ -158,17 +161,6 @@ with gr.Blocks(css=css, js=js_func, theme=theme) as demo:
             output_transcript = gr.Markdown("*Your transcription will be available here.*")
             gr.Markdown("**Feedback**")
             feedback = gr.Markdown("*Your performance evaluation will be shown here.*")
-            image_display_2 = gr.Image(
-                value="duolingo.png", 
-                interactive=False,
-                show_download_button=False,
-                show_share_button=False,
-                show_fullscreen_button=False,
-                show_label=False,
-                container=False,
-                width=150,
-                elem_id="output_image"
-            )
     
     # Create a hidden state for the extra context.
     context_text_state = gr.State(extra_context_text)
@@ -179,4 +171,4 @@ with gr.Blocks(css=css, js=js_func, theme=theme) as demo:
     # Update both transcription and evaluation feedback.
     audio_component.change(process_audio, inputs=[audio_component, context_text_state], outputs=[output_transcript, feedback])
 
-demo.launch(server_port=7863)
+demo.launch(server_name="0.0.0.0", server_port=7863)

@@ -46,3 +46,12 @@ services:
       - "7862:7862"   
     env_file:
       - ./song-vocab-openai/.env  # credentials for OpenAI API
+
+  speaking-practice:
+    build:
+      context: ./speaking-practice
+      dockerfile: Dockerfile
+    ports:
+      - "7863:7863"   
+    env_file:
+      - ./speaking-practice/.env  # credentials for OpenAI API
