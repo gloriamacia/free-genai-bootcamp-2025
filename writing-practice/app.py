@@ -77,7 +77,7 @@ def save_study_session(study_session_id, review_items, current_group):
         except Exception as e:
             raise gr.Error(f"Failed to create study session: {e}")
     for item in review_items:
-        payload = {"word_id": item["word_id"], "correct": item["correct"]}
+        payload = {"word_id": item["word_id"], "correct_count": item["correct"]}
         try:
             response = requests.post(f"{backend_url}/study-sessions/{study_session_id}/review", json=payload)
             response.raise_for_status()

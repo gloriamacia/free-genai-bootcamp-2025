@@ -41,9 +41,6 @@ class Db:
     cursor.execute(self.sql('setup/create_table_words.sql'))
     self.get().commit()
 
-    cursor.execute(self.sql('setup/create_table_word_reviews.sql'))
-    self.get().commit()
-
     cursor.execute(self.sql('setup/create_table_word_review_items.sql'))
     self.get().commit()
 

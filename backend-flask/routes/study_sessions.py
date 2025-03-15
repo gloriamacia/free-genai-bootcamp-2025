@@ -162,8 +162,8 @@ def load(app):
       cursor.execute('''
         SELECT 
           w.*,
-          COALESCE(SUM(CASE WHEN wri.correct = 1 THEN 1 ELSE 0 END), 0) as session_correct_count,
-          COALESCE(SUM(CASE WHEN wri.correct = 0 THEN 1 ELSE 0 END), 0) as session_wrong_count
+          COALESCE(SUM(CASE WHEN wri.correct_count = 1 THEN 1 ELSE 0 END), 0) as session_correct_count,
+          COALESCE(SUM(CASE WHEN wri.correct_count = 0 THEN 1 ELSE 0 END), 0) as session_wrong_count
         FROM words w
         JOIN word_review_items wri ON wri.word_id = w.id
         WHERE wri.study_session_id = ?
@@ -217,9 +217,9 @@ def load(app):
     try:
       data = request.get_json()
       word_id = data.get('word_id')
-      correct = data.get('correct')
-      if word_id is None or correct is None:
-        return jsonify({"error": "word_id and correct are required"}), 400
+      correct_count = data.get('correct_count')
+      if word_id is None or correct_count is None:
+        return jsonify({"error": "word_id and correct_count are required"}), 400
       cursor = app.db.cursor()
       # Check if the study session exists
       cursor.execute('SELECT id FROM study_sessions WHERE id = ?', (id,))
@@ -227,16 +227,16 @@ def load(app):
       if not session:
         return jsonify({"error": "Study session not found"}), 404
       cursor.execute('''
-        INSERT INTO word_review_items (study_session_id, word_id, correct)
+        INSERT INTO word_review_items (study_session_id, word_id, correct_count)
         VALUES (?, ?, ?)
-      ''', (id, word_id, int(correct)))
+      ''', (id, word_id, int(correct_count)))
       app.db.commit()
       new_item_id = cursor.lastrowid
       return jsonify({
         "id": new_item_id,
         "study_session_id": id,
         "word_id": word_id,
-        "correct": int(correct)
+        "correct": int(correct_count)
       }), 201
     except Exception as e:
       return jsonify({"error": str(e)}), 500
