@@ -5,6 +5,7 @@ from html2text import HTML2Text
 from openai import OpenAI
 from duckduckgo_search import DDGS
 from gradio.themes import GoogleFont
+import os
 
 js_func = """
 function refresh() {
@@ -107,9 +108,9 @@ tools = [
 user_language = "English"
 foreign_language = "Catalan"
 
-def run_app(song_title: str, user_api_key: str):
-    # Initialize the OpenAI client using the provided API key.
-    client = OpenAI(api_key=user_api_key)
+def run_app(song_title: str):
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+    client = OpenAI(api_key=openai_api_key)
     
     messages = [
         {
@@ -168,20 +169,25 @@ with gr.Blocks(js=js_func, theme=theme, css="""
     width: 100%;
     margin: 0 auto;
 }
+    h1 {
+        margin: 0 0 50px 0;
+        overflow: hidden;
+        text-align: center;
+    }
 """) as demo:
-    gr.Markdown("<h1 style='text-align:center;'>Learn Catalan with Songs 🎵</h1>")
+    gr.Markdown("<h1>Learn Catalan with Songs 🎹</h1>")
     
     # Wrap the two columns in a row for a side-by-side layout.
     with gr.Row():
         # Left column with inputs and output.
         with gr.Column(scale=1):
             with gr.Row():
-                song_title_input = gr.Textbox(label="Song Title", placeholder="Enter song title here")
-                api_key_input = gr.Textbox(label="OpenAI API Key", placeholder="Enter your OpenAI API key here", type="password")
+                song_title_input = gr.Textbox(label="Song Title", placeholder="Enter song title here followed by the artist")
             submit_button = gr.Button("Submit", variant="primary")
             output_box = gr.Textbox(label="Output", interactive=False)
             
-            submit_button.click(fn=run_app, inputs=[song_title_input, api_key_input], outputs=output_box)
+            submit_button.click(fn=run_app, inputs=[song_title_input], outputs=output_box)
+
         
         # Right column with the image.
         with gr.Column(scale=1):
@@ -194,4 +200,5 @@ with gr.Blocks(js=js_func, theme=theme, css="""
                     container=False
                 )
 
-demo.launch(server_port=7862)
+demo.launch(server_name="0.0.0.0", server_port=7862)
+

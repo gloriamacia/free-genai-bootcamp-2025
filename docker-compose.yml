@@ -26,6 +26,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "7860:7860"   # Expose the Gradio app on port 7860
+    environment:
+      - BACKEND_URL=http://backend:5000
 
   listening-practice:
     build:
@@ -34,4 +36,13 @@ services:
     ports:
       - "7861:7861"   # Expose the Streamlit app on port 7861
     env_file:
-      - ./listening-practice/.env         # Pass AWS credentials (and any other environment variables) via .env
+      - ./listening-practice/.env  # AWS credentials for Polly
+
+  song-vocabulary:
+    build:
+      context: ./song-vocab-openai
+      dockerfile: Dockerfile
+    ports:
+      - "7862:7862"   
+    env_file:
+      - ./song-vocab-openai/.env  # credentials for OpenAI API

@@ -2,6 +2,7 @@ import gradio as gr
 import requests
 import random
 from gradio.themes import GoogleFont
+import os
 
 # Create a custom theme:
 # - Use Nunito as the font.
@@ -14,11 +15,12 @@ theme = gr.themes.Default(font=[GoogleFont("Nunito")]).set(
 )
 
 # Backend URL
-BACKEND_URL = "http://backend:5000"
+backend_url = os.getenv("BACKEND_URL")
+
 
 def fetch_random_word(current_group):
     try:
-        response = requests.get(f"{BACKEND_URL}/groups/{current_group}/words/raw")
+        response = requests.get(f"{backend_url}/groups/{current_group}/words/raw")
         response.raise_for_status()
         data = response.json()
         words = data.get("words", [])
@@ -68,7 +70,7 @@ def save_study_session(study_session_id, review_items, current_group):
     if not study_session_id:
         payload = {"group_id": current_group, "study_activity_id": 1}
         try:
-            response = requests.post(f"{BACKEND_URL}/study-sessions", json=payload)
+            response = requests.post(f"{backend_url}/study-sessions", json=payload)
             response.raise_for_status()
             data = response.json()
             study_session_id = data["id"]
@@ -77,7 +79,7 @@ def save_study_session(study_session_id, review_items, current_group):
     for item in review_items:
         payload = {"word_id": item["word_id"], "correct": item["correct"]}
         try:
-            response = requests.post(f"{BACKEND_URL}/study-sessions/{study_session_id}/review", json=payload)
+            response = requests.post(f"{backend_url}/study-sessions/{study_session_id}/review", json=payload)
             response.raise_for_status()
         except Exception as e:
             raise gr.Error("Failed to save study session")
