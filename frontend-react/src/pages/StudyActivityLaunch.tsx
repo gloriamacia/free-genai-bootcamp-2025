@@ -141,10 +141,9 @@ export default function StudyActivityLaunch() {
 
         <Button
           onClick={handleLaunch}
-          disabled={!selectedGroup}
-          className="w-full"
+          className="w-full text-primary-foreground bg-primary hover:bg-secondary"
         >
-          Launch Now
+          Launch
         </Button>
       </div>
     </div>
