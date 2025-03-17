@@ -44,7 +44,7 @@ This Gradio-based web application helps you practice speaking in Catalan by desc
    ```bash
    gradio app.py
    ```
-5. **Access the interface** by opening the local URL (usually http://127.0.0.1:7860) in your web browser.
+5. **Access the interface** by opening the local URL (usually http://34.205.203.251:7860) in your web browser.
 
 ## How to Use
 

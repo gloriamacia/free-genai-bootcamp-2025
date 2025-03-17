@@ -10,7 +10,7 @@ export default function Settings() {
     if (resetConfirmation.toLowerCase() === "reset me") {
       try {
         const response = await fetch(
-          "http://127.0.0.1:5001/study-sessions/reset",
+          "http://34.205.203.251:5000/study-sessions/reset",
           {
             method: "POST",
             headers: {

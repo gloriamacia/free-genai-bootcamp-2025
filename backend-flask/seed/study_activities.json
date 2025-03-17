@@ -1,22 +1,22 @@
 [
   {
     "name": "Writing Practice",
-    "url": "http://127.0.0.1:7860",
+    "url": "http://34.205.203.251:7860",
     "preview_url": "/assets/study_activities/writing-practice.png"
   },
   {
     "name": "Listening Practice",
-    "url": "http://127.0.0.1:7861",
+    "url": "http://34.205.203.251:7861",
     "preview_url": "/assets/study_activities/listening-practice.png"
   },
   {
     "name": "Song Practice",
-    "url": "http://127.0.0.1:7862",
+    "url": "http://34.205.203.251:7862",
     "preview_url": "/assets/study_activities/song-practice.png"
   },
   {
     "name": "Speaking Practice",
-    "url": "http://127.0.0.1:7863",
+    "url": "http://34.205.203.251:7863",
     "preview_url": "/assets/study_activities/speaking-practice.png"
   }
 ]

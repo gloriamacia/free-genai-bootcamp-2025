@@ -39,7 +39,7 @@ export default function StudyActivityLaunch() {
 
   useEffect(() => {
     console.log("Fetching launch data for id:", id);
-    fetch(`http://127.0.0.1:5001/study-activities/${id}/launch`)
+    fetch(`http://34.205.203.251:5000/study-activities/${id}/launch`)
       .then((response) => {
         console.log("Response status:", response.status);
         if (!response.ok) throw new Error("Failed to fetch launch data");

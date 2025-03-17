@@ -19,7 +19,7 @@ Learn new vocabulary from Catalan songs using this interactive Gradio app.
    ```
 
 3. **Open the App**  
-   Navigate to the provided URL (typically http://127.0.0.1:7860) in your browser.
+   Navigate to the provided URL (typically http://34.205.203.251:7860) in your browser.
 
 ## Usage
 

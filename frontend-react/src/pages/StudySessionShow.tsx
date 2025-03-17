@@ -42,7 +42,7 @@ export default function StudySessionShow() {
       setError(null);
       try {
         const response = await fetch(
-          `http://127.0.0.1:5001/study-sessions/${id}?page=${currentPage}&per_page=10`
+          `http://34.205.203.251:5000/study-sessions/${id}?page=${currentPage}&per_page=10`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch session data");

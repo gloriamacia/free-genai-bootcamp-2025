@@ -23,7 +23,7 @@ def create_app(test_config=None):
     app.db = Db(database=app.config['DATABASE'])
 
     # Allow CORS for all origins & methods
-    CORS(app, resources={r"/*": {"origins": ["*", "http://localhost:5173"], "allow_headers": "*", "methods": "*"}})
+    CORS(app, resources={r"/*": {"origins": ["*"], "allow_headers": "*", "methods": "*"}})
 
     # Close database connection
     @app.teardown_appcontext

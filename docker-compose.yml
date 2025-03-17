@@ -6,7 +6,7 @@ services:
       context: ./backend-flask
       dockerfile: Dockerfile
     ports:
-      - "5001:5000"   # Map container port 5000 to host port 5001 (adjust if needed)
+      - "5000:5000"
     volumes:
       - ./backend-flask/words.db:/app/words.db
     environment:
@@ -18,7 +18,7 @@ services:
       context: ./frontend-react
       dockerfile: Dockerfile
     ports:
-      - "5173:80"     # Map Nginx port 80 inside container to host port 5173
+      - "80:80"   
 
   writing-practice:
     build:
@@ -34,7 +34,7 @@ services:
       context: ./listening-practice
       dockerfile: Dockerfile
     ports:
-      - "7861:7861"   # Expose the Streamlit app on port 7861
+      - "7861:7861"   
     env_file:
       - ./listening-practice/.env  # AWS credentials for Polly
 

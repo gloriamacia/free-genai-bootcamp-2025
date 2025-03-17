@@ -52,7 +52,7 @@ export default function StudyActivityShow() {
       setError(null);
       try {
         const response = await fetch(
-          `http://127.0.0.1:5001/study-activities/${id}`
+          `http://34.205.203.251:5000/study-activities/${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch study activity");
@@ -63,7 +63,7 @@ export default function StudyActivityShow() {
 
         // Fetch sessions for the current page
         const sessionsResponse = await fetch(
-          `http://127.0.0.1:5001/study-activities/${id}/sessions?page=${currentPage}&per_page=${ITEMS_PER_PAGE}`
+          `http://34.205.203.251:5000/study-activities/${id}/sessions?page=${currentPage}&per_page=${ITEMS_PER_PAGE}`
         );
         if (!sessionsResponse.ok) {
           throw new Error("Failed to fetch sessions");

@@ -35,7 +35,7 @@ pip install gradio requests flask flask-cors
 
 1. **Backend Setup:**
 
-   - Ensure you have a Flask backend running on `http://127.0.0.1:5001` that exposes endpoints for:
+   - Ensure you have a Flask backend running on `http://34.205.203.251:5000` that exposes endpoints for:
      - `/groups` – Returns the available word groups.
      - `/groups/<group_id>/words/raw` – Returns raw word data for the specified group.
      - `/study-sessions` (POST) – Creates a new study session.
@@ -46,7 +46,7 @@ pip install gradio requests flask flask-cors
 2. **Frontend Setup:**
 
    - Save the provided Python code (from the source file, e.g., `app.py`) into your project directory.
-   - The Gradio app runs on `http://127.0.0.1:7860`.
+   - The Gradio app runs on `http://34.205.203.251:7860`.
 
 ## Running the App
 
@@ -66,7 +66,7 @@ pip install gradio requests flask flask-cors
    python app.py
    ```
 
-   This will open the Gradio interface at `http://127.0.0.1:7860` in your default browser.
+   This will open the Gradio interface at `http://34.205.203.251:7860` in your default browser.
 
 ## Usage
 
