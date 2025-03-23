@@ -93,3 +93,11 @@ In retrospect, a different AWS deployment option might have been more suitable t
 ### Run Locally 
 
 TBD
+
+### Bootcamp Contributions 
+
+* Spanish Bootcamp 
+* LLM on Lambda 
+* Web app on lambda
+
+TBD
