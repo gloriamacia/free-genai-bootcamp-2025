@@ -26,8 +26,6 @@ It offers four interactive study activities: **Writing Practice**, **Listening P
 
 ![study activities](readme-images/study_activities.png)
 
-Awesome! Here's a fully updated and improved version of your `### EC2 Deployment` section, now including Docker Compose, containerization, and EC2 security group setup.
-
 ---
 
 ### 🎥 Video Walkthrough
