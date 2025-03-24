@@ -6,7 +6,7 @@ services:
       context: ./backend-flask
       dockerfile: Dockerfile
     ports:
-      - "5001:5000"   # Map container port 5000 to host port 5001 (adjust if needed)
+      - "5001:5000"
     volumes:
       - ./backend-flask/words.db:/app/words.db
     environment:
