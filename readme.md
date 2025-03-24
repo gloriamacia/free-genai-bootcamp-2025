@@ -77,10 +77,6 @@ Due to [gradio limitations](https://discuss.huggingface.co/t/microphone-access-f
 
 In retrospect, a different AWS deployment option might have been more suitable than EC2, but I was unaware of this limitation when I first set sail with it and I wished to keep it simple. That said, cloud deployment was not the main focus of the bootcamp — the app works perfectly in local environments, and instructions for running it locally are provided below.
 
-### Run Locally 
-
-Absolutely! Here's the updated **"Run Locally"** section with the note about OpenAI and AWS credentials:
-
 ---
 
 ### 💻 Run Locally
