@@ -44,12 +44,16 @@ Performance data is saved to the language portal database, showing how many time
 
 ![writing practice](readme-images/writing_practice.png)
 
+---
+
 ### 🎧 Listening Practice
 
 This app lets learners choose a dialogue topic, then generates a Catalan conversation using Anthropic’s LLM through AWS Bedrock. The dialogue is voiced using AWS Polly for a natural listening experience.
 After listening, learners answer a multiple-choice question to check their comprehension.
 
 ![listening practice](readme-images/listening_practice.png)
+
+---
 
 ### 🎵 Song Practice
 This app helps learners explore Catalan songs interactively using an LLM-powered agent. You simply enter the title of a Catalan song (optionally with the artist), and the agent takes over using three specialized tools:
@@ -63,6 +67,8 @@ Behind the scenes, an autonomous language model agent from OpenAI coordinates al
 ![song practice](readme-images/song_practice.png)
 
 ⚠️ **EC2 Deployment**: DuckDuckGo may occasionally block search requests originating from EC2 instances, which can cause the app to temporarily stop working.
+
+---
 
 ### 🗣️ Speaking Practice
 
@@ -135,18 +141,6 @@ AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
    ```bash
    docker compose up --build
    ```
-
-#### 🌐 Access the App
-
-Once running, you can visit the following URLs in your browser:
-
-- **Frontend** → [http://localhost:5173](http://localhost:5173)  
-- **Backend API** → [http://localhost:5001](http://localhost:5001)  
-- **Writing Practice** → [http://localhost:7860](http://localhost:7860)  
-- **Listening Practice** → [http://localhost:7861](http://localhost:7861)  
-- **Song Vocabulary** → [http://localhost:7862](http://localhost:7862)  
-- **Speaking Practice** → [http://localhost:7863](http://localhost:7863)
-
 ---
 
 ### ☁️ EC2 Deployment  
